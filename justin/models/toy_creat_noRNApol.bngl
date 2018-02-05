@@ -1,0 +1,150 @@
+begin model
+
+##characteristics of the toy model. Brought the volume of the system down considerably. 
+# Also making lattices that are only around 500GAGs large
+# Maximum number of GAGs, lipids and RNA will be lower
+
+begin parameters
+	
+	#Volumes
+	NA 6.022e23 #mol^-1
+	sigma 0.002 #um, width of cell membrane
+	vol_CP 9.4e-16 #cytoplasmic volume L of HELA cell http://bionumbers.hms.harvard.edu/bionumber.aspx?s=n&id=106664&ver=3
+	#vol_CP 3.2e-15
+	sa_PM 16 #1600 #um^2 got from bio http://www.bionumbers.hms.harvard.edu/bionumber.aspx?&id=103718&ver=15&trm=HELA%20cell%20surface%20area
+	#sa_PM 2.1715 #um^2
+	vol_PM sa_PM*sigma*1e-15 #volume L
+#David performed all of these calculations for a yeast model
+#however mine would be a human model. Should I adjust the volume? 
+	koff 1
+	khigh 1e13 #arbitrarily high rate constant
+	
+	G0 0  #starting number of GAGs	
+	R0 4e3 #not sure how many GAGs are actually in the cell but the rate of production is 10-1000/second.
+	L_0 1e4 #actual value in fibroblasts is 2.8e7
+		  #using a lower amount just to simulate. Value needs to be higher than GAGs. Simulating 100x more PIP than GAG
+	# this number caps GAG. 
+	N0 100 #number of RNAs in the system
+
+	kc 1000 #recycling rate
+	kG 100000 #rate of GAG creation
+	kN 100 #creation of RNAs
+	
+	poly 1e4
+	polyn 1e6
+	polyn2 1e7
+	dimer 1e7
+	dimern2 1e9
+	rna 1e8
+	pip 1e8
+	
+
+	
+
+
+	kpoly (poly/NA)/vol_CP #polymerization w/o RNA
+	kpolyn (polyn/NA)/vol_CP #polymerization w/ 1 RNA
+	kpolyn2 (polyn2/NA)/vol_CP #polymerization w/ 2 RNA
+	kdimer (dimer/NA)/vol_CP #dimerization w/o RNA
+	kdimern2 (dimern2/NA)/vol_CP #dimerization when both GAGs are bound to RNA RNA
+	krna (rna/NA)/vol_CP #rate of RNA binding GAG
+	kpip (pip/NA)/vol_CP #rate of GAG binding PIP2
+	
+	
+	
+	kpolyPM (poly/NA)/vol_PM - kpoly
+	kpolynPM (polyn/NA)/vol_PM - kpolyn
+	kpolyn2PM (polyn2/NA)/vol_PM - kpolyn2
+	kdimerPM (dimer/NA)/vol_PM - kdimer
+	kdimern2PM (dimern2/NA)/vol_PM - kdimern2
+	kpip_pm (pip/NA)/vol_PM - kpip
+	krna_pm (rna/NA)/vol_PM - krna
+	
+end parameters
+
+
+begin species
+	GAG(g1,g2,d,lb,n) G0
+	L(p) L_0
+	Lattice() 0 
+	N(nu) 0
+end species
+
+
+begin observables
+
+	Molecules Gagpolymer GAG()
+	Molecules GagPM	GAG().L()
+	Molecules Lipids L()
+	Molecules GagNuc GAG().N()
+	Molecules RNA N()
+#	Molecules GagLattice GAG(x~1)
+	Molecules GagLattice Lattice()
+	Molecules GagPentamer GAG(g1,g2!2).GAG(g1!2,g2!3).GAG(g1!3,g2!4).GAG(g1!4,g2!5).GAG(g1!5,g2)
+	Molecules GagTetramer GAG(g1,g2!2).GAG(g1!2,g2!3).GAG(g1!3,g2!4).GAG(g1!4,g2)
+	Molecules GagTrimer GAG(g1,g2!2).GAG(g1!2,g2!3).GAG(g1!3,g2)
+	Molecules GagDimer GAG(g1,g2!2).GAG(g1!2,g2)
+	Molecules GagMonomer GAG(g1,g2)
+
+end observables
+
+begin functions
+	gag_lattice(p) = if( Gagpolymer(p)<500,1,0 )
+	complete_lattice(r) = if( Lipids(r)>497,khigh,0 )
+#	hexamer(t) = if( Gagpolymer(t)>5,1,0)
+#function that ablates GAG binding once it hits 2500 molecules
+	CreateL() = if(Lipids<L_0,kc,0)
+#	CreateGAG() = if(Gagpolymer<R0,kc,0) #don't need in this model because the GAG isn't getting capped
+	CreateN() = if(RNA<N0,kN,0)
+	CreateGag() = if(Gagpolymer<R0,kG,0)
+end functions
+
+begin reaction rules
+	GAG(g1) + GAG(g2) <-> GAG(g1!1).GAG(g2!1) kpoly, koff
+	GAG(g1,n!1).N(nu!1) + GAG(g2,n) -> GAG(g1!2,n!1).N(nu!1).GAG(g2!2,n) kpolyn
+	GAG(g1,n!1).N(nu!1) + GAG(g2,n!2).N(nu!2) -> GAG(g1!3,n!1).N(nu!1).GAG(g2!3,n!2).N(nu!2) kpolyn2
+#polymerizes GAG based on RNA binding
+
+
+	GAG(g1).L() + GAG(g2).L() <-> GAG(g1!1).L().GAG(g2!1).L() kpolyPM, koff
+	GAG(g1,n!1).N(nu!1).L() + GAG(g2).L() -> GAG(g1!2,n!1).N(nu!1).L().GAG(g2!2).L() kpolynPM
+	GAG(g1,n!1).N(nu!1).L() + GAG(g2,n!2).N(nu!2).L() -> GAG(g1!3,n!1).N(nu!1).L().GAG(g2!3,n!2).N(nu!2).L() kpolyn2PM
+#polymerizes GAG based on RNA binding when GAG is bound to PIP
+
+
+	GAG(d) + GAG(d) <-> GAG(d!1).GAG(d!1) kdimer, koff
+	GAG(d,n!1).N(nu!1) + GAG(d,n) -> GAG(d!2,n!1).N(nu!1).GAG(d!2,n) kdimer
+	GAG(d,n!1).N(nu!1) + GAG(d,n!2).N(nu!2) -> GAG(d!3,n!1).N(nu!1).GAG(d!3,n!2).N(nu!2) kdimern2
+#dimerizes GAG based on RNA binding
+ 
+
+	GAG(d).L() + GAG(d).L() <-> GAG(d!1).L().GAG(d!1).L() kdimerPM, koff
+	GAG(d,n!1).N(nu!1).L() + GAG(d,n).L() -> GAG(d!2,n!1).N(nu!1).L().GAG(d!2,n).L() kdimerPM
+	GAG(d,n!1).N(nu!1).L() + GAG(d,n!2).N(nu!2).L() -> GAG(d!3,n!1).N(nu!1).L().GAG(d!3,n!2).N(nu!2).L() kdimern2PM
+#dimerizes GAG based on RNA binding when GAG is bound to PIP
+
+
+	GAG(n) + N(nu) <-> GAG(n!1).N(nu!1) krna, koff
+#	GAG(n!1).N(nu!1).L().GAG(n) + N(nu) -> GAG(n!1).N(nu!1).L().GAG(n!2).N(nu!2) krna_pm
+#propegates RNA binding	
+
+
+#	%t:GAG(g1,g2,d) + %a:GAG(g1,g2,d) -> GAG(g1,g2,d!1).GAG(g1,g2,d!1) FunctionProduct("klow*hexamer(t)", "hexamer(a)")
+#limits anything above a hexamer from being added onto a polymer
+#	%r::GAG(x~0) -> %r::GAG(x~1) khigh*complete_lattice(r)
+	%c::L() -> Lattice() complete_lattice(c)
+#need to change rate constants upon PIP binding
+	L(p) + %p:GAG(lb) <-> L(p!1).GAG(lb!1) kpip*gag_lattice(p), koff
+	L(p) + %p:GAG(lb).L() -> L(p!1).GAG(lb!1).L() kpip_pm*gag_lattice(p)
+ 
+ 
+ 
+ 	0 -> GAG(g1,g2,d,lb,n) CreateGag() #gag production is between 10/sec and 1000/sec
+ 	0 -> N(nu) CreateN()
+ 	0 -> L(p) CreateL()
+#replinishing everything
+end reaction rules
+
+end model
+
+simulate_nf({suffix=>"nf",t_end=>10,n_steps=>100,param=>"-v"});

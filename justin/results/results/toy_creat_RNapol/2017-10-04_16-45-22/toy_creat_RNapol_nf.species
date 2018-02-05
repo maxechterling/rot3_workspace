@@ -1,0 +1,7 @@
+# nfsim generated species list for system: 'toy_creat_RNapol'
+# warning! this feature is not yet fully tested! 
+GAG(d!1,g1,g2,lb!2,n).GAG(d!1,g1,g2,lb!3,n).L(p!2).L(p!3)  1
+GAG(d,g1,g2,lb!1,n).L(p!1)  5
+GAG(d,g1,g2,lb,n)  28
+L(p)  19494
+Lattice()  1

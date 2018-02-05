@@ -1,0 +1,7 @@
+
+
+for filename in *.gdat; do
+    ./lattice_pull.py "$filename" >> Gaglattice_L0_pip.txt
+done
+
+sort -n -k 1 -n -k 2 Gaglattice_L0_pip.txt

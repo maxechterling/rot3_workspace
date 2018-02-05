@@ -1,0 +1,166 @@
+begin model
+##characteristics of the toy model. Brought the volume of the system down considerably. 
+# Also making lattices that are only around 500Gags large
+# Maximum number of GAGs, lipids and RNA will be lower
+# To simulate how RNA also how low affinity interactions with Gag, put a more numerous 
+# low affinity site on RNA. The RNA would be a heteropolymer with multiple low affinity sites
+# and around 10 or so high affinity sites. The heteropolymer should form at a high rate.
+
+begin parameters
+	
+	#Volumes
+	NA 6.022e23 #mol^-1
+	sigma 0.002 #um, width of cell membrane
+	vol_CP 9.4e-16 #cytoplasmic volume L of HELA cell http://bionumbers.hms.harvard.edu/bionumber.aspx?s=n&id=106664&ver=3
+	sa_PM 16 #1600 #um^2 got from bio http://www.bionumbers.hms.harvard.edu/bionumber.aspx?&id=103718&ver=15&trm=HELA%20cell%20surface%20area
+	vol_PM sa_PM*sigma*1e-15 #volume L
+	koff 1
+	khigh 1e9
+	kmid 1e5 #arbitrarily high rate constant, using for RNA formation rate because it’s supposed to be instantaneous
+	G0 0  #starting number of GAGs	
+	R0 4e3 #not sure how many GAGs are actually in the cell but the rate of production is 10-1000/second.
+	L_0 1e4 #actual value in fibroblasts is 2.8e7. Decreased by a factor of around 1000 because
+		  # it makes the simulation run very slowly.
+		  #using a lower amount just to simulate. Value needs to be higher than GAGs. Simulating 100x more PIP than GAG
+	# this number caps GAG. 
+	Nh0 100 #number of psi RNAs in the system (there should be less than 10 on every RNA polymer)
+	Nt 1000 #number of RNAs in the system
+	Nl 50 #length of nucleotide polymers
+	g_full 300 #number of RNA bound to a gag polymer
+#	Np 10 #number of psi RNAs in the RNA heteropolymer
+	kc 1000 #recycling rate
+	kG 10000 #rate of GAG creation
+	
+	poly 1e4
+	polyn 1e6
+	polyn2 1e7
+	dimer 1e7
+	dimern2 1e9
+	psi 2.3e6 #PMID:23798665
+	rna 2.3e3 #PMID:23798665
+	pip 1e6
+
+
+	kpoly (poly/NA)/vol_CP #polymerization w/o RNA
+	kpolyn (polyn/NA)/vol_CP #polymerization w/ 1 RNA
+	kpolyn2 (polyn2/NA)/vol_CP #polymerization w/ 2 RNA
+	kdimer (dimer/NA)/vol_CP #dimerization w/o RNA
+	kdimern2 (dimern2/NA)/vol_CP #dimerization when both GAGs are bound to RNA RNA
+	krna (rna/NA)/vol_CP #rate of RNA binding Gag
+	kpsi (psi/NA)/vol_CP #rate of Gag binding psi on RNA
+	kpip (pip/NA)/vol_CP #rate of Gag binding PIP2
+	
+	
+	
+	kpolyPM (poly/NA)/vol_PM - kpoly
+	kpolynPM (polyn/NA)/vol_PM - kpolyn
+	kpolyn2PM (polyn2/NA)/vol_PM - kpolyn2
+	kdimerPM (dimer/NA)/vol_PM - kdimer
+	kdimern2PM (dimern2/NA)/vol_PM - kdimern2
+	kpip_pm (pip/NA)/vol_PM - kpip
+	krna_pm (rna/NA)/vol_PM - krna
+	kpsi_pm (psi/NA)/vol_PM - kpsi
+	
+end parameters
+
+
+begin species
+	GAG(g1,g2,d,lb,n) G0
+	L(p) L_0
+	Lattice() 0 
+	N(nu,np1,np2) Nt
+	Npsi(nh,nhi1,nhi2) Nh0
+end species
+
+
+begin observables
+
+	Molecules Gagpolymer GAG()
+	Molecules GagPM	GAG().L()
+	Molecules Lipids L()
+	Molecules GagNuc GAG().N()
+	Molecules RNA N()
+	Molecules RNApsi Npsi()
+	Molecules RNApol N().Npsi()
+	Molecules GagPsi GAG().Npsi()
+	Molecules GagLattice Lattice()
+	Molecules GagDimer GAG(g1,g2!2).GAG(g1!2,g2)
+	Molecules GagMonomer GAG(g1,g2)
+
+end observables
+
+begin functions
+	gag_lattice(p) = if( Gagpolymer(p)<500,1,0 )
+	complete_lattice(r) = if( Gagpolymer(r)>497,khigh,0 )
+	rna_full(p) = if((RNA(p)+RNApsi(p))< Nl,1,0 )
+#	rna_psi(p) = if( RNApsi(p) < Np,1,0)
+	gag_rna(p) = if((RNA(p)+RNApsi(p)) >=Nl,1,0)
+	gag_full(c) = if(RNA(c)<g_full,1,0)
+	CreateL() = if(Lipids<L_0,khigh,0)
+	CreateN() = if(RNA<Nt,khigh,0)
+	CreateNpsi() = if(RNApsi<Nh0,khigh,0)
+	CreateGag() = if(Gagpolymer<R0,kG,0)
+end functions
+
+begin reaction rules
+	GAG(g1) + GAG(g2) <-> GAG(g1!1).GAG(g2!1) kpoly, koff
+	GAG(g1,n!1).Npsi(nh!1) + GAG(g2,n) -> GAG(g1!2,n!1).Npsi(nh!1).GAG(g2!2,n) kpolyn
+	GAG(g1,n!1).Npsi(nh!1) + GAG(g2,n!2).Npsi(nh!2) -> GAG(g1!3,n!1).Npsi(nh!1).GAG(g2!3,n!2).Npsi(nh!2) kpolyn2
+	GAG(g1,n!1).N(nu!1) + GAG(g2,n) -> GAG(g1!2,n!1).N(nu!1).GAG(g2!2,n) kpolyn
+	GAG(g1,n!1).N(nu!1) + GAG(g2,n!2).N(nu!2) -> GAG(g1!3,n!1).N(nu!1).GAG(g2!3,n!2).N(nu!2) kpolyn2
+	GAG(g1,n!1).N(nu!1) + GAG(g2,n!2).Npsi(nh!2) -> GAG(g1!3,n!1).N(nu!1).GAG(g2!3,n!2).Npsi(nh!2) kpolyn2
+#polymerizes GAG based on RNA binding
+
+	GAG(g1).L() + GAG(g2).L() <-> GAG(g1!1).L().GAG(g2!1).L() kpolyPM, koff
+	GAG(g1,n!1).Npsi(nh!1).L() + GAG(g2).L() -> GAG(g1!2,n!1).Npsi(nh!1).L().GAG(g2!2).L() kpolynPM
+	GAG(g1,n!1).Npsi(nh!1).L() + GAG(g2,n!2).Npsi(nh!2).L() -> GAG(g1!3,n!1).Npsi(nh!1).L().GAG(g2!3,n!2).Npsi(nh!2).L() kpolyn2PM
+	GAG(g1,n!1).N(nu!1).L() + GAG(g2).L() -> GAG(g1!2,n!1).N(nu!1).L().GAG(g2!2).L() kpolynPM
+	GAG(g1,n!1).N(nu!1).L() + GAG(g2,n!2).N(nu!2).L() -> GAG(g1!3,n!1).N(nu!1).L().GAG(g2!3,n!2).N(nu!2).L() kpolyn2PM
+	GAG(g1,n!1).N(nu!1).L() + GAG(g2,n!2).Npsi(nh!2).L() -> GAG(g1!3,n!1).N(nu!1).L().GAG(g2!3,n!2).Npsi(nh!2).L() kpolyn2PM
+#polymerizes GAG based on RNA binding when GAG is bound to PIP
+
+
+	GAG(d) + GAG(d) <-> GAG(d!1).GAG(d!1) kdimer, koff
+	GAG(d,n!1).Npsi(nh!1) + GAG(d,n) -> GAG(d!2,n!1).Npsi(nh!1).GAG(d!2,n) kdimer
+	GAG(d,n!1).Npsi(nh!1) + GAG(d,n!2).Npsi(nh!2) -> GAG(d!3,n!1).Npsi(nh!1).GAG(d!3,n!2).Npsi(nh!2) kdimern2
+	GAG(d,n!1).N(nu!1) + GAG(d,n) -> GAG(d!2,n!1).N(nu!1).GAG(d!2,n) kdimer
+	GAG(d,n!1).N(nu!1) + GAG(d,n!2).N(nu!2) -> GAG(d!3,n!1).N(nu!1).GAG(d!3,n!2).N(nu!2) kdimern2
+	GAG(d,n!1).N(nu!1) + GAG(d,n!2).Npsi(nh!2) -> GAG(d!3,n!1).N(nu!1).GAG(d!3,n!2).Npsi(nh!2) kdimern2
+#dimerizes GAG based on RNA binding
+ 
+
+	GAG(d).L() + GAG(d).L() <-> GAG(d!1).L().GAG(d!1).L() kdimerPM, koff
+	GAG(d,n!1).Npsi(nh!1).L() + GAG(d,n).L() -> GAG(d!2,n!1).Npsi(nh!1).L().GAG(d!2,n).L() kdimerPM
+	GAG(d,n!1).Npsi(nh!1).L() + GAG(d,n!2).Npsi(nh!2).L() -> GAG(d!3,n!1).Npsi(nh!1).L().GAG(d!3,n!2).Npsi(nh!2).L() kdimern2PM
+	GAG(d,n!1).N(nu!1).L() + GAG(d,n).L() -> GAG(d!2,n!1).N(nu!1).L().GAG(d!2,n).L() kdimerPM
+	GAG(d,n!1).N(nu!1).L() + GAG(d,n!2).N(nu!2).L() -> GAG(d!3,n!1).N(nu!1).L().GAG(d!3,n!2).N(nu!2).L() kdimern2PM
+	GAG(d,n!1).N(nu!1).L() + GAG(d,n!2).Npsi(nh!2).L() -> GAG(d!3,n!1).N(nu!1).L().GAG(d!3,n!2).Npsi(nh!2).L() kdimern2PM
+#dimerizes GAG based on RNA binding when GAG is bound to PIP
+
+#	%t:GAG(g1,g2,d) + %a:GAG(g1,g2,d) -> GAG(g1,g2,d!1).GAG(g1,g2,d!1) FunctionProduct("klow*hexamer(t)", "hexamer(a)")
+#limits anything above a hexamer from being added onto a polymer, still not working
+	%c::L() -> Lattice() complete_lattice(c)
+	L(p) + %p:GAG(lb) <-> L(p!1).GAG(lb!1) kpip*gag_lattice(p), koff
+	L(p) + %p:GAG(lb).L() -> L(p!1).GAG(lb!1).L() kpip_pm*gag_lattice(p)
+ 
+ 	GAG(n) + %p:N(nu) <-> GAG(n!1).N(nu!1) krna*gag_rna(p), koff
+	GAG(n) + %p:Npsi(nh) <-> GAG(n!1).Npsi(nh!1) kpsi*gag_rna(p), koff
+	# Could also right a rule that has Gag bound to RNA bind to other Gags in the RNA complex faster
+#propegates RNA binding	
+ 	
+	%p:N(np1) + N(np2) <-> %p:N(np1!1).N(np2!1) khigh*rna_full(p), koff
+	%p:N(np1) + Npsi(nhi1) -> N(np1!1).Npsi(nhi1!1) khigh*rna_full(p)#*rna_psi(p)
+	%p:Npsi(nhi1) + Npsi(nhi2) -> Npsi(nhi1!1).Npsi(nhi2!1) kmid*rna_full(p)#*rna_psi(p)
+	%p:N(np2) + Npsi(nhi2) -> N(np2!1).Npsi(nhi2!1) khigh*rna_full(p)#*rna_psi(p)  #probably need to change RNA_full to make sure N doesn't have more than 10 Npsis
+#forms the RNA heteropolymer.
+ 
+ 	0 -> GAG(g1,g2,d,lb,n) CreateGag() #gag production is between 10/sec and 1000/sec
+ 	0 -> N(nu,np1,np2) CreateN()
+ 	0 -> L(p) CreateL()
+ 	0 -> Npsi(nh,nhi1,nhi2) CreateNpsi()
+#replinishing everything
+end reaction rules
+
+end model
+
+simulate_nf({suffix=>"nf",t_end=>10,n_steps=>100,param=>"-v -gml 7000000"});

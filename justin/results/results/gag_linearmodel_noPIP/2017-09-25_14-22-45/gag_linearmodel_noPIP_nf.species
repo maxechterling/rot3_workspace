@@ -1,0 +1,5 @@
+# nfsim generated species list for system: 'gag_linearmodel_noPIP'
+# warning! this feature is not yet fully tested! 
+GAG(N~0,d!1,g1,g2,x~0).GAG(N~0,d!1,g1,g2,x~0)  162
+GAG(N~0,d,g1,g2,x~0)  2669
+GAG(N~1,d,g1,g2,x~0)  7

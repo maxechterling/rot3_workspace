@@ -1,0 +1,21 @@
+# nfsim generated species list for system: 'toy_creat_RNapol'
+# warning! this feature is not yet fully tested! 
+GAG(d!1,g1!2,g2,lb!3,n).GAG(d!1,g1,g2,lb!4,n).GAG(d!5,g1,g2!2,lb!6,n).L(p!3).L(p!4).GAG(d!5,g1,g2,lb!7,n).L(p!6).L(p!7)  5
+GAG(d!1,g1!2,g2,lb!3,n).GAG(d!1,g1,g2,lb!4,n).GAG(d,g1,g2!2,lb!5,n).L(p!3).L(p!4).L(p!5)  2
+GAG(d!1,g1,g2!2,lb!3,n).GAG(d!1,g1,g2,lb!4,n).GAG(d!5,g1!2,g2,lb!6,n).L(p!3).L(p!4).GAG(d!5,g1,g2,lb!7,n).L(p!6).L(p!7)  4
+GAG(d!1,g1,g2!2,lb!3,n).GAG(d!1,g1,g2,lb!4,n).GAG(d,g1!2,g2,lb!5,n).L(p!3).L(p!4).L(p!5)  4
+GAG(d!1,g1,g2,lb!2,n).GAG(d!1,g1!3,g2,lb!4,n!5).L(p!2).GAG(d,g1,g2!3,lb!6,n).L(p!4).N(nu!5).L(p!6)  1
+GAG(d!1,g1,g2,lb!2,n).GAG(d!1,g1!3,g2,lb!4,n).L(p!2).GAG(d!5,g1,g2!3,lb!6,n).L(p!4).GAG(d!5,g1,g2,lb!7,n).L(p!6).L(p!7)  5
+GAG(d!1,g1,g2,lb!2,n).GAG(d!1,g1!3,g2,lb!4,n).L(p!2).GAG(d,g1,g2!3,lb!5,n).L(p!4).L(p!5)  3
+GAG(d!1,g1,g2,lb!2,n).GAG(d!1,g1,g2!3,lb!4,n).L(p!2).GAG(d!5,g1!3,g2,lb!6,n).L(p!4).GAG(d!5,g1,g2,lb!7,n).L(p!6).L(p!7)  5
+GAG(d!1,g1,g2,lb!2,n).GAG(d!1,g1,g2!3,lb!4,n).L(p!2).GAG(d,g1!3,g2,lb!5,n).L(p!4).L(p!5)  2
+GAG(d!1,g1,g2,lb!2,n).GAG(d!1,g1,g2,lb!3,n).L(p!2).L(p!3)  1362
+GAG(d!1,g1,g2,lb!2,n).GAG(d!1,g1,g2,lb,n).L(p!2)  1
+GAG(d,g1!1,g2,lb!2,n).GAG(d!3,g1,g2!1,lb!4,n).L(p!2).GAG(d!3,g1,g2,lb!5,n).L(p!4).L(p!5)  1
+GAG(d,g1!1,g2,lb!2,n).GAG(d,g1,g2!1,lb!3,n).L(p!2).L(p!3)  1
+GAG(d,g1,g2!1,lb!2,n).GAG(d!3,g1!1,g2,lb!4,n).L(p!2).GAG(d!3,g1,g2,lb!5,n).L(p!4).L(p!5)  1
+GAG(d,g1,g2!1,lb!2,n).GAG(d,g1!1,g2,lb!3,n).L(p!2).L(p!3)  1
+GAG(d,g1,g2,lb!1,n).L(p!1)  1027
+GAG(d,g1,g2,lb,n)  125
+L(p)  6126
+N(nu)  99

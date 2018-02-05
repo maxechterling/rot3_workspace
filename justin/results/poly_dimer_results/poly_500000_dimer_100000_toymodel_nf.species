@@ -1,0 +1,16 @@
+# nfsim generated species list for system: 'poly_500000_dimer_100000_toymodel'
+# warning! this feature is not yet fully tested! 
+GAG(d!1,g1!2,g2!3,lb!4,n).GAG(d!1,g1!5,g2,lb!6,n).GAG(d,g1!7,g2!2,lb!8,n).GAG(d,g1!3,g2!9,lb!10,n).L(p!4).GAG(d!11,g1,g2!5,lb!12,n).L(p!6).GAG(d,g1,g2!7,lb!13,n).L(p!8).GAG(d,g1!9,g2,lb!14,n).L(p!10).GAG(d!11,g1,g2,lb!15,n).L(p!12).L(p!13).L(p!14).L(p!15)  1
+GAG(d!1,g1,g2,lb!2,n!3).GAG(d!1,g1,g2,lb!4,n).L(p!2).N(nu!3).L(p!4)  1
+GAG(d!1,g1,g2,lb!2,n).GAG(d!1,g1!3,g2,lb!4,n).L(p!2).GAG(d,g1,g2!3,lb!5,n).L(p!4).L(p!5)  1
+GAG(d,g1!1,g2!2,lb!3,n).GAG(d,g1!4,g2!1,lb!5,n).GAG(d,g1!2,g2,lb!6,n).L(p!3).GAG(d,g1,g2!4,lb!7,n).L(p!5).L(p!6).L(p!7)  1
+GAG(d,g1!1,g2!2,lb!3,n).GAG(d,g1,g2!1,lb!4,n).GAG(d,g1!2,g2,lb!5,n).L(p!3).L(p!4).L(p!5)  1
+GAG(d,g1!1,g2,lb!2,n).GAG(d,g1,g2!1,lb!3,n).L(p!2).L(p!3)  4
+GAG(d,g1,g2!1,lb!2,n).GAG(d,g1!1,g2!3,lb!4,n).L(p!2).GAG(d,g1!3,g2,lb!5,n).L(p!4).L(p!5)  1
+GAG(d,g1,g2!1,lb!2,n).GAG(d,g1!1,g2,lb!3,n).L(p!2).L(p!3)  1
+GAG(d,g1,g2,lb!1,n!2).L(p!1).N(nu!2)  1
+GAG(d,g1,g2,lb!1,n).L(p!1)  46
+GAG(d,g1,g2,lb,n)  1
+L(p)  9340
+Lattice()  20
+N(nu)  4

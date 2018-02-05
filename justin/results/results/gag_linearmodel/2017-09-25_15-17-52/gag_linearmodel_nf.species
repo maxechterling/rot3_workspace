@@ -1,0 +1,32 @@
+# nfsim generated species list for system: 'gag_linearmodel'
+# warning! this feature is not yet fully tested! 
+GAG(N~0,c~0,d!1,g1!2,g2,l~0,x~0).GAG(N~0,c~0,d!1,g1,g2,l~0,x~0).GAG(N~0,c~0,d!3,g1,g2!2,l~0,x~0).GAG(N~0,c~0,d!3,g1,g2,l~0,x~0)  11
+GAG(N~0,c~0,d!1,g1!2,g2,l~0,x~0).GAG(N~0,c~0,d!1,g1,g2,l~0,x~0).GAG(N~0,c~0,d,g1,g2!2,l~0,x~0)  43
+GAG(N~0,c~0,d!1,g1,g2!2,l~0,x~0).GAG(N~0,c~0,d!1,g1!3,g2,l~0,x~0).GAG(N~0,c~0,d,g1!2,g2,l~0,x~0).GAG(N~0,c~0,d,g1,g2!3,l~0,x~0)  1
+GAG(N~0,c~0,d!1,g1,g2!2,l~0,x~0).GAG(N~0,c~0,d!1,g1,g2,l~0,x~0).GAG(N~0,c~0,d!3,g1!2,g2,l~0,x~0).GAG(N~0,c~0,d!3,g1,g2,l~0,x~0)  7
+GAG(N~0,c~0,d!1,g1,g2!2,l~0,x~0).GAG(N~0,c~0,d!1,g1,g2,l~0,x~0).GAG(N~0,c~0,d,g1!2,g2,l~0,x~0)  30
+GAG(N~0,c~0,d!1,g1,g2,l~0,x~0).GAG(N~0,c~0,d!1,g1!2,g2,l~0,x~0).GAG(N~0,c~0,d!3,g1,g2!2,l~0,x~0).GAG(N~0,c~0,d!3,g1,g2,l~0,x~0)  11
+GAG(N~0,c~0,d!1,g1,g2,l~0,x~0).GAG(N~0,c~0,d!1,g1!2,g2,l~0,x~0).GAG(N~0,c~0,d,g1,g2!2,l~0,x~0)  34
+GAG(N~0,c~0,d!1,g1,g2,l~0,x~0).GAG(N~0,c~0,d!1,g1,g2!2,l~0,x~0).GAG(N~0,c~0,d!3,g1!2,g2,l~0,x~0).GAG(N~0,c~0,d!3,g1,g2,l~0,x~0)  19
+GAG(N~0,c~0,d!1,g1,g2,l~0,x~0).GAG(N~0,c~0,d!1,g1,g2!2,l~0,x~0).GAG(N~0,c~0,d,g1!2,g2,l~0,x~0)  48
+GAG(N~0,c~0,d!1,g1,g2,l~0,x~0).GAG(N~0,c~0,d!1,g1,g2,l~0,x~0)  40965
+GAG(N~0,c~0,d!1,g1,g2,l~0,x~0).GAG(N~0,c~0,d!1,g1,g2,l~1,x~0)  6
+GAG(N~0,c~0,d!1,g1,g2,l~0,x~0).GAG(N~1,c~0,d!1,g1!2,g2,l~0,x~0).GAG(N~0,c~0,d,g1,g2!2,l~0,x~0)  1
+GAG(N~0,c~0,d!1,g1,g2,l~0,x~0).GAG(N~1,c~0,d!1,g1,g2,l~0,x~0)  1
+GAG(N~0,c~0,d!1,g1,g2,l~1,x~0).GAG(N~0,c~0,d!1,g1,g2,l~0,x~0)  3
+GAG(N~0,c~0,d!1,g1,g2,l~1,x~0).GAG(N~0,c~0,d!1,g1,g2,l~1,x~0)  1
+GAG(N~0,c~0,d,g1!1,g2!2,l~0,x~0).GAG(N~0,c~0,d!3,g1,g2!1,l~0,x~0).GAG(N~0,c~0,d!4,g1!2,g2,l~0,x~0).GAG(N~0,c~0,d!3,g1,g2,l~0,x~0).GAG(N~0,c~0,d!4,g1,g2,l~0,x~0)  1
+GAG(N~0,c~0,d,g1!1,g2!2,l~0,x~0).GAG(N~0,c~0,d,g1,g2!1,l~0,x~0).GAG(N~0,c~0,d,g1!2,g2,l~0,x~0)  1
+GAG(N~0,c~0,d,g1!1,g2,l~0,x~0).GAG(N~0,c~0,d!2,g1,g2!1,l~0,x~0).GAG(N~0,c~0,d!2,g1,g2,l~0,x~0)  39
+GAG(N~0,c~0,d,g1!1,g2,l~0,x~0).GAG(N~0,c~0,d,g1!2,g2!1,l~0,x~0).GAG(N~0,c~0,d,g1,g2!2,l~0,x~0)  2
+GAG(N~0,c~0,d,g1!1,g2,l~0,x~0).GAG(N~0,c~0,d,g1,g2!1,l~0,x~0)  209
+GAG(N~0,c~0,d,g1,g2!1,l~0,x~0).GAG(N~0,c~0,d!2,g1!1,g2,l~0,x~0).GAG(N~0,c~0,d!2,g1,g2!3,l~0,x~0).GAG(N~0,c~0,d,g1!3,g2,l~0,x~0)  1
+GAG(N~0,c~0,d,g1,g2!1,l~0,x~0).GAG(N~0,c~0,d!2,g1!1,g2,l~0,x~0).GAG(N~0,c~0,d!2,g1,g2,l~0,x~0)  38
+GAG(N~0,c~0,d,g1,g2!1,l~0,x~0).GAG(N~0,c~0,d,g1!1,g2!2,l~0,x~0).GAG(N~0,c~0,d,g1!2,g2,l~0,x~0)  1
+GAG(N~0,c~0,d,g1,g2!1,l~0,x~0).GAG(N~0,c~0,d,g1!1,g2,l~0,x~0)  190
+GAG(N~0,c~0,d,g1,g2!1,l~0,x~0).GAG(N~1,c~0,d,g1!1,g2,l~0,x~0)  1
+GAG(N~0,c~0,d,g1,g2,l~0,x~0)  116278
+GAG(N~0,c~0,d,g1,g2,l~1,x~0)  28
+GAG(N~1,c~0,d!1,g1,g2,l~0,x~0).GAG(N~0,c~0,d!1,g1,g2,l~0,x~0)  1
+GAG(N~1,c~0,d,g1!1,g2,l~0,x~0).GAG(N~0,c~0,d,g1,g2!1,l~0,x~0)  4
+GAG(N~1,c~0,d,g1,g2,l~0,x~0)  16

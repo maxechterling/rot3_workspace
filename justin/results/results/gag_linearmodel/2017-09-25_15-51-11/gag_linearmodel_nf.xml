@@ -1,0 +1,1528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.3.1  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="gag_linearmodel">
+    <ListOfParameters>
+      <Parameter id="NA" type="Constant" value="6.022e+23"/>
+      <Parameter id="sigma" type="Constant" value="0.002"/>
+      <Parameter id="vol_CP" type="Constant" value="9.4e-13"/>
+      <Parameter id="sa_PM" type="Constant" value="1600"/>
+      <Parameter id="vol_PM" type="Constant" value="3.2e-15"/>
+      <Parameter id="khigh" type="Constant" value="1e+15"/>
+      <Parameter id="poly" type="Constant" value="10000"/>
+      <Parameter id="polyn" type="Constant" value="1000000"/>
+      <Parameter id="polyn2" type="Constant" value="10000000"/>
+      <Parameter id="dimer" type="Constant" value="10000000"/>
+      <Parameter id="dimern2" type="Constant" value="1e+9"/>
+      <Parameter id="rna" type="Constant" value="1e+8"/>
+      <Parameter id="pip" type="Constant" value="1000000"/>
+      <Parameter id="R0" type="Constant" value="200000"/>
+      <Parameter id="kpoly" type="Constant" value="1.7665722e-8"/>
+      <Parameter id="kpolyn" type="Constant" value="1.7665722e-6"/>
+      <Parameter id="kpolyn2" type="Constant" value="1.7665722e-5"/>
+      <Parameter id="kdimer" type="Constant" value="1.7665722e-5"/>
+      <Parameter id="kdimern2" type="Constant" value="0.0017665722"/>
+      <Parameter id="krna" type="Constant" value="0.00017665722"/>
+      <Parameter id="kpip" type="Constant" value="1.7665722e-6"/>
+      <Parameter id="kpolyPM" type="Constant" value="5.1716402e-6"/>
+      <Parameter id="kpolynPM" type="Constant" value="0.00051716402"/>
+      <Parameter id="kpolyn2PM" type="Constant" value="0.0051716402"/>
+      <Parameter id="kdimerPM" type="Constant" value="0.0051716402"/>
+      <Parameter id="kdimern2PM" type="Constant" value="0.51716402"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="GAG">
+        <ListOfComponentTypes>
+          <ComponentType id="N">
+            <ListOfAllowedStates>
+              <AllowedState id="0"/>
+              <AllowedState id="1"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="c">
+            <ListOfAllowedStates>
+              <AllowedState id="0"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="d"/>
+          <ComponentType id="g1"/>
+          <ComponentType id="g2"/>
+          <ComponentType id="l">
+            <ListOfAllowedStates>
+              <AllowedState id="0"/>
+              <AllowedState id="1"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+          <ComponentType id="x">
+            <ListOfAllowedStates>
+              <AllowedState id="0"/>
+              <AllowedState id="1"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="R0" name="GAG(N~0,c~0,d,g1,g2,l~0,x~0)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="GAG">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="N" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C2" name="c" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C3" name="d" numberOfBonds="0"/>
+              <Component id="S1_M1_C4" name="g1" numberOfBonds="0"/>
+              <Component id="S1_M1_C5" name="g2" numberOfBonds="0"/>
+              <Component id="S1_M1_C6" name="l" state="0" numberOfBonds="0"/>
+              <Component id="S1_M1_C7" name="x" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="_R1" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C2" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP1_M1_C4" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR1_RP2_M1_C1" name="g2" numberOfBonds="0"/>
+                  <Component id="RR1_RP2_M1_C2" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP2_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_RP2_M1_C4" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="RR1_PP1_M1_C2" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M1_C4" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR1_PP1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M2_C1" name="g2" numberOfBonds="1"/>
+                  <Component id="RR1_PP1_M2_C2" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M2_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR1_PP1_M2_C4" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR1_PP1_B1" site1="RR1_PP1_M1_C1" site2="RR1_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR1_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP1_M1_C2" targetID="RR1_PP1_M1_C2"/>
+          <MapItem sourceID="RR1_RP1_M1_C3" targetID="RR1_PP1_M1_C3"/>
+          <MapItem sourceID="RR1_RP1_M1_C4" targetID="RR1_PP1_M1_C4"/>
+          <MapItem sourceID="RR1_RP2_M1" targetID="RR1_PP1_M2"/>
+          <MapItem sourceID="RR1_RP2_M1_C1" targetID="RR1_PP1_M2_C1"/>
+          <MapItem sourceID="RR1_RP2_M1_C2" targetID="RR1_PP1_M2_C2"/>
+          <MapItem sourceID="RR1_RP2_M1_C3" targetID="RR1_PP1_M2_C3"/>
+          <MapItem sourceID="RR1_RP2_M1_C4" targetID="RR1_PP1_M2_C4"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR1_RP1_M1_C1" site2="RR1_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR2" name="_R2" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR2_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR2_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C2" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP1_M1_C4" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR2_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR2_RP2_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR2_RP2_M1_C1" name="g2" numberOfBonds="0"/>
+                  <Component id="RR2_RP2_M1_C2" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP2_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_RP2_M1_C4" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR2_PP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR2_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M1_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="RR2_PP1_M1_C2" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M1_C4" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR2_PP1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR2_PP1_M2_C1" name="g2" numberOfBonds="1"/>
+                  <Component id="RR2_PP1_M2_C2" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M2_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR2_PP1_M2_C4" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR2_PP1_B1" site1="RR2_PP1_M1_C1" site2="RR2_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR2_RateLaw" type="Function" name="_rateLaw2" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR2_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR2_RP1_M1" targetID="RR2_PP1_M1"/>
+          <MapItem sourceID="RR2_RP1_M1_C1" targetID="RR2_PP1_M1_C1"/>
+          <MapItem sourceID="RR2_RP1_M1_C2" targetID="RR2_PP1_M1_C2"/>
+          <MapItem sourceID="RR2_RP1_M1_C3" targetID="RR2_PP1_M1_C3"/>
+          <MapItem sourceID="RR2_RP1_M1_C4" targetID="RR2_PP1_M1_C4"/>
+          <MapItem sourceID="RR2_RP2_M1" targetID="RR2_PP1_M2"/>
+          <MapItem sourceID="RR2_RP2_M1_C1" targetID="RR2_PP1_M2_C1"/>
+          <MapItem sourceID="RR2_RP2_M1_C2" targetID="RR2_PP1_M2_C2"/>
+          <MapItem sourceID="RR2_RP2_M1_C3" targetID="RR2_PP1_M2_C3"/>
+          <MapItem sourceID="RR2_RP2_M1_C4" targetID="RR2_PP1_M2_C4"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR2_RP1_M1_C1" site2="RR2_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR3" name="_R3" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR3_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR3_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C2" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP1_M1_C4" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR3_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR3_RP2_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR3_RP2_M1_C1" name="g2" numberOfBonds="0"/>
+                  <Component id="RR3_RP2_M1_C2" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR3_RP2_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_RP2_M1_C4" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR3_PP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR3_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M1_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="RR3_PP1_M1_C2" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M1_C4" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR3_PP1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR3_PP1_M2_C1" name="g2" numberOfBonds="1"/>
+                  <Component id="RR3_PP1_M2_C2" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M2_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR3_PP1_M2_C4" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR3_PP1_B1" site1="RR3_PP1_M1_C1" site2="RR3_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR3_RateLaw" type="Function" name="_rateLaw3" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR3_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR3_RP1_M1" targetID="RR3_PP1_M1"/>
+          <MapItem sourceID="RR3_RP1_M1_C1" targetID="RR3_PP1_M1_C1"/>
+          <MapItem sourceID="RR3_RP1_M1_C2" targetID="RR3_PP1_M1_C2"/>
+          <MapItem sourceID="RR3_RP1_M1_C3" targetID="RR3_PP1_M1_C3"/>
+          <MapItem sourceID="RR3_RP1_M1_C4" targetID="RR3_PP1_M1_C4"/>
+          <MapItem sourceID="RR3_RP2_M1" targetID="RR3_PP1_M2"/>
+          <MapItem sourceID="RR3_RP2_M1_C1" targetID="RR3_PP1_M2_C1"/>
+          <MapItem sourceID="RR3_RP2_M1_C2" targetID="RR3_PP1_M2_C2"/>
+          <MapItem sourceID="RR3_RP2_M1_C3" targetID="RR3_PP1_M2_C3"/>
+          <MapItem sourceID="RR3_RP2_M1_C4" targetID="RR3_PP1_M2_C4"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR3_RP1_M1_C1" site2="RR3_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR4" name="_R4" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR4_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR4_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C2" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP1_M1_C4" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR4_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR4_RP2_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR4_RP2_M1_C1" name="g2" numberOfBonds="0"/>
+                  <Component id="RR4_RP2_M1_C2" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP2_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_RP2_M1_C4" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR4_PP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR4_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M1_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="RR4_PP1_M1_C2" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M1_C4" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR4_PP1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR4_PP1_M2_C1" name="g2" numberOfBonds="1"/>
+                  <Component id="RR4_PP1_M2_C2" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M2_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR4_PP1_M2_C4" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR4_PP1_B1" site1="RR4_PP1_M1_C1" site2="RR4_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR4_RateLaw" type="Function" name="_rateLaw4" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR4_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR4_RP1_M1" targetID="RR4_PP1_M1"/>
+          <MapItem sourceID="RR4_RP1_M1_C1" targetID="RR4_PP1_M1_C1"/>
+          <MapItem sourceID="RR4_RP1_M1_C2" targetID="RR4_PP1_M1_C2"/>
+          <MapItem sourceID="RR4_RP1_M1_C3" targetID="RR4_PP1_M1_C3"/>
+          <MapItem sourceID="RR4_RP1_M1_C4" targetID="RR4_PP1_M1_C4"/>
+          <MapItem sourceID="RR4_RP2_M1" targetID="RR4_PP1_M2"/>
+          <MapItem sourceID="RR4_RP2_M1_C1" targetID="RR4_PP1_M2_C1"/>
+          <MapItem sourceID="RR4_RP2_M1_C2" targetID="RR4_PP1_M2_C2"/>
+          <MapItem sourceID="RR4_RP2_M1_C3" targetID="RR4_PP1_M2_C3"/>
+          <MapItem sourceID="RR4_RP2_M1_C4" targetID="RR4_PP1_M2_C4"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR4_RP1_M1_C1" site2="RR4_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR5" name="_R5" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR5_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR5_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C2" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP1_M1_C4" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR5_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR5_RP2_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR5_RP2_M1_C1" name="g2" numberOfBonds="0"/>
+                  <Component id="RR5_RP2_M1_C2" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP2_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_RP2_M1_C4" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR5_PP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR5_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M1_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="RR5_PP1_M1_C2" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M1_C4" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR5_PP1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR5_PP1_M2_C1" name="g2" numberOfBonds="1"/>
+                  <Component id="RR5_PP1_M2_C2" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M2_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR5_PP1_M2_C4" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR5_PP1_B1" site1="RR5_PP1_M1_C1" site2="RR5_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR5_RateLaw" type="Function" name="_rateLaw5" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR5_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR5_RP1_M1" targetID="RR5_PP1_M1"/>
+          <MapItem sourceID="RR5_RP1_M1_C1" targetID="RR5_PP1_M1_C1"/>
+          <MapItem sourceID="RR5_RP1_M1_C2" targetID="RR5_PP1_M1_C2"/>
+          <MapItem sourceID="RR5_RP1_M1_C3" targetID="RR5_PP1_M1_C3"/>
+          <MapItem sourceID="RR5_RP1_M1_C4" targetID="RR5_PP1_M1_C4"/>
+          <MapItem sourceID="RR5_RP2_M1" targetID="RR5_PP1_M2"/>
+          <MapItem sourceID="RR5_RP2_M1_C1" targetID="RR5_PP1_M2_C1"/>
+          <MapItem sourceID="RR5_RP2_M1_C2" targetID="RR5_PP1_M2_C2"/>
+          <MapItem sourceID="RR5_RP2_M1_C3" targetID="RR5_PP1_M2_C3"/>
+          <MapItem sourceID="RR5_RP2_M1_C4" targetID="RR5_PP1_M2_C4"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR5_RP1_M1_C1" site2="RR5_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR6" name="_R6" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR6_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR6_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C2" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP1_M1_C4" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR6_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR6_RP2_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR6_RP2_M1_C1" name="g2" numberOfBonds="0"/>
+                  <Component id="RR6_RP2_M1_C2" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR6_RP2_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_RP2_M1_C4" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR6_PP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR6_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M1_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="RR6_PP1_M1_C2" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M1_C4" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR6_PP1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR6_PP1_M2_C1" name="g2" numberOfBonds="1"/>
+                  <Component id="RR6_PP1_M2_C2" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M2_C3" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR6_PP1_M2_C4" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR6_PP1_B1" site1="RR6_PP1_M1_C1" site2="RR6_PP1_M2_C1"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR6_RateLaw" type="Function" name="_rateLaw6" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR6_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR6_RP1_M1" targetID="RR6_PP1_M1"/>
+          <MapItem sourceID="RR6_RP1_M1_C1" targetID="RR6_PP1_M1_C1"/>
+          <MapItem sourceID="RR6_RP1_M1_C2" targetID="RR6_PP1_M1_C2"/>
+          <MapItem sourceID="RR6_RP1_M1_C3" targetID="RR6_PP1_M1_C3"/>
+          <MapItem sourceID="RR6_RP1_M1_C4" targetID="RR6_PP1_M1_C4"/>
+          <MapItem sourceID="RR6_RP2_M1" targetID="RR6_PP1_M2"/>
+          <MapItem sourceID="RR6_RP2_M1_C1" targetID="RR6_PP1_M2_C1"/>
+          <MapItem sourceID="RR6_RP2_M1_C2" targetID="RR6_PP1_M2_C2"/>
+          <MapItem sourceID="RR6_RP2_M1_C3" targetID="RR6_PP1_M2_C3"/>
+          <MapItem sourceID="RR6_RP2_M1_C4" targetID="RR6_PP1_M2_C4"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR6_RP1_M1_C1" site2="RR6_RP2_M1_C1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR7" name="_R7" symmetry_factor="0.5">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR7_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR7_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP1_M1_C6" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR7_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR7_RP2_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR7_RP2_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR7_RP2_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR7_RP2_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR7_RP2_M1_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP2_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_RP2_M1_C6" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR7_PP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR7_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C3" name="d" numberOfBonds="1"/>
+                  <Component id="RR7_PP1_M1_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M1_C6" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR7_PP1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR7_PP1_M2_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M2_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M2_C3" name="d" numberOfBonds="1"/>
+                  <Component id="RR7_PP1_M2_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M2_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR7_PP1_M2_C6" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR7_PP1_B1" site1="RR7_PP1_M1_C3" site2="RR7_PP1_M2_C3"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR7_RateLaw" type="Function" name="_rateLaw7" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR7_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR7_RP1_M1" targetID="RR7_PP1_M1"/>
+          <MapItem sourceID="RR7_RP1_M1_C1" targetID="RR7_PP1_M1_C1"/>
+          <MapItem sourceID="RR7_RP1_M1_C2" targetID="RR7_PP1_M1_C2"/>
+          <MapItem sourceID="RR7_RP1_M1_C3" targetID="RR7_PP1_M1_C3"/>
+          <MapItem sourceID="RR7_RP1_M1_C4" targetID="RR7_PP1_M1_C4"/>
+          <MapItem sourceID="RR7_RP1_M1_C5" targetID="RR7_PP1_M1_C5"/>
+          <MapItem sourceID="RR7_RP1_M1_C6" targetID="RR7_PP1_M1_C6"/>
+          <MapItem sourceID="RR7_RP2_M1" targetID="RR7_PP1_M2"/>
+          <MapItem sourceID="RR7_RP2_M1_C1" targetID="RR7_PP1_M2_C1"/>
+          <MapItem sourceID="RR7_RP2_M1_C2" targetID="RR7_PP1_M2_C2"/>
+          <MapItem sourceID="RR7_RP2_M1_C3" targetID="RR7_PP1_M2_C3"/>
+          <MapItem sourceID="RR7_RP2_M1_C4" targetID="RR7_PP1_M2_C4"/>
+          <MapItem sourceID="RR7_RP2_M1_C5" targetID="RR7_PP1_M2_C5"/>
+          <MapItem sourceID="RR7_RP2_M1_C6" targetID="RR7_PP1_M2_C6"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR7_RP1_M1_C3" site2="RR7_RP2_M1_C3"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR8" name="_R8" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR8_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR8_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP1_M1_C6" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR8_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR8_RP2_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR8_RP2_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR8_RP2_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR8_RP2_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR8_RP2_M1_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP2_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_RP2_M1_C6" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR8_PP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR8_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C3" name="d" numberOfBonds="1"/>
+                  <Component id="RR8_PP1_M1_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M1_C6" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR8_PP1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR8_PP1_M2_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M2_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M2_C3" name="d" numberOfBonds="1"/>
+                  <Component id="RR8_PP1_M2_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M2_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR8_PP1_M2_C6" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR8_PP1_B1" site1="RR8_PP1_M1_C3" site2="RR8_PP1_M2_C3"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR8_RateLaw" type="Function" name="_rateLaw8" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR8_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR8_RP1_M1" targetID="RR8_PP1_M1"/>
+          <MapItem sourceID="RR8_RP1_M1_C1" targetID="RR8_PP1_M1_C1"/>
+          <MapItem sourceID="RR8_RP1_M1_C2" targetID="RR8_PP1_M1_C2"/>
+          <MapItem sourceID="RR8_RP1_M1_C3" targetID="RR8_PP1_M1_C3"/>
+          <MapItem sourceID="RR8_RP1_M1_C4" targetID="RR8_PP1_M1_C4"/>
+          <MapItem sourceID="RR8_RP1_M1_C5" targetID="RR8_PP1_M1_C5"/>
+          <MapItem sourceID="RR8_RP1_M1_C6" targetID="RR8_PP1_M1_C6"/>
+          <MapItem sourceID="RR8_RP2_M1" targetID="RR8_PP1_M2"/>
+          <MapItem sourceID="RR8_RP2_M1_C1" targetID="RR8_PP1_M2_C1"/>
+          <MapItem sourceID="RR8_RP2_M1_C2" targetID="RR8_PP1_M2_C2"/>
+          <MapItem sourceID="RR8_RP2_M1_C3" targetID="RR8_PP1_M2_C3"/>
+          <MapItem sourceID="RR8_RP2_M1_C4" targetID="RR8_PP1_M2_C4"/>
+          <MapItem sourceID="RR8_RP2_M1_C5" targetID="RR8_PP1_M2_C5"/>
+          <MapItem sourceID="RR8_RP2_M1_C6" targetID="RR8_PP1_M2_C6"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR8_RP1_M1_C3" site2="RR8_RP2_M1_C3"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR9" name="_R9" symmetry_factor="0.5">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR9_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR9_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_RP1_M1_C6" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR9_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR9_RP2_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR9_RP2_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR9_RP2_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR9_RP2_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR9_RP2_M1_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR9_RP2_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_RP2_M1_C6" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR9_PP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR9_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C3" name="d" numberOfBonds="1"/>
+                  <Component id="RR9_PP1_M1_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M1_C6" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR9_PP1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR9_PP1_M2_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M2_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M2_C3" name="d" numberOfBonds="1"/>
+                  <Component id="RR9_PP1_M2_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M2_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR9_PP1_M2_C6" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR9_PP1_B1" site1="RR9_PP1_M1_C3" site2="RR9_PP1_M2_C3"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR9_RateLaw" type="Function" name="_rateLaw9" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR9_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR9_RP1_M1" targetID="RR9_PP1_M1"/>
+          <MapItem sourceID="RR9_RP1_M1_C1" targetID="RR9_PP1_M1_C1"/>
+          <MapItem sourceID="RR9_RP1_M1_C2" targetID="RR9_PP1_M1_C2"/>
+          <MapItem sourceID="RR9_RP1_M1_C3" targetID="RR9_PP1_M1_C3"/>
+          <MapItem sourceID="RR9_RP1_M1_C4" targetID="RR9_PP1_M1_C4"/>
+          <MapItem sourceID="RR9_RP1_M1_C5" targetID="RR9_PP1_M1_C5"/>
+          <MapItem sourceID="RR9_RP1_M1_C6" targetID="RR9_PP1_M1_C6"/>
+          <MapItem sourceID="RR9_RP2_M1" targetID="RR9_PP1_M2"/>
+          <MapItem sourceID="RR9_RP2_M1_C1" targetID="RR9_PP1_M2_C1"/>
+          <MapItem sourceID="RR9_RP2_M1_C2" targetID="RR9_PP1_M2_C2"/>
+          <MapItem sourceID="RR9_RP2_M1_C3" targetID="RR9_PP1_M2_C3"/>
+          <MapItem sourceID="RR9_RP2_M1_C4" targetID="RR9_PP1_M2_C4"/>
+          <MapItem sourceID="RR9_RP2_M1_C5" targetID="RR9_PP1_M2_C5"/>
+          <MapItem sourceID="RR9_RP2_M1_C6" targetID="RR9_PP1_M2_C6"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR9_RP1_M1_C3" site2="RR9_RP2_M1_C3"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR10" name="_R10" symmetry_factor="0.5">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR10_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR10_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_RP1_M1_C6" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR10_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR10_RP2_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR10_RP2_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR10_RP2_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR10_RP2_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR10_RP2_M1_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_RP2_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_RP2_M1_C6" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR10_PP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR10_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C3" name="d" numberOfBonds="1"/>
+                  <Component id="RR10_PP1_M1_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M1_C6" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR10_PP1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR10_PP1_M2_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M2_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M2_C3" name="d" numberOfBonds="1"/>
+                  <Component id="RR10_PP1_M2_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M2_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR10_PP1_M2_C6" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR10_PP1_B1" site1="RR10_PP1_M1_C3" site2="RR10_PP1_M2_C3"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR10_RateLaw" type="Function" name="_rateLaw10" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR10_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR10_RP1_M1" targetID="RR10_PP1_M1"/>
+          <MapItem sourceID="RR10_RP1_M1_C1" targetID="RR10_PP1_M1_C1"/>
+          <MapItem sourceID="RR10_RP1_M1_C2" targetID="RR10_PP1_M1_C2"/>
+          <MapItem sourceID="RR10_RP1_M1_C3" targetID="RR10_PP1_M1_C3"/>
+          <MapItem sourceID="RR10_RP1_M1_C4" targetID="RR10_PP1_M1_C4"/>
+          <MapItem sourceID="RR10_RP1_M1_C5" targetID="RR10_PP1_M1_C5"/>
+          <MapItem sourceID="RR10_RP1_M1_C6" targetID="RR10_PP1_M1_C6"/>
+          <MapItem sourceID="RR10_RP2_M1" targetID="RR10_PP1_M2"/>
+          <MapItem sourceID="RR10_RP2_M1_C1" targetID="RR10_PP1_M2_C1"/>
+          <MapItem sourceID="RR10_RP2_M1_C2" targetID="RR10_PP1_M2_C2"/>
+          <MapItem sourceID="RR10_RP2_M1_C3" targetID="RR10_PP1_M2_C3"/>
+          <MapItem sourceID="RR10_RP2_M1_C4" targetID="RR10_PP1_M2_C4"/>
+          <MapItem sourceID="RR10_RP2_M1_C5" targetID="RR10_PP1_M2_C5"/>
+          <MapItem sourceID="RR10_RP2_M1_C6" targetID="RR10_PP1_M2_C6"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR10_RP1_M1_C3" site2="RR10_RP2_M1_C3"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR11" name="_R11" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR11_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR11_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR11_RP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR11_RP1_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR11_RP1_M1_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR11_RP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_RP1_M1_C6" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR11_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR11_RP2_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR11_RP2_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR11_RP2_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR11_RP2_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR11_RP2_M1_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_RP2_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_RP2_M1_C6" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR11_PP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR11_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C3" name="d" numberOfBonds="1"/>
+                  <Component id="RR11_PP1_M1_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M1_C6" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR11_PP1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR11_PP1_M2_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M2_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M2_C3" name="d" numberOfBonds="1"/>
+                  <Component id="RR11_PP1_M2_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M2_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR11_PP1_M2_C6" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR11_PP1_B1" site1="RR11_PP1_M1_C3" site2="RR11_PP1_M2_C3"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR11_RateLaw" type="Function" name="_rateLaw11" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR11_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR11_RP1_M1" targetID="RR11_PP1_M1"/>
+          <MapItem sourceID="RR11_RP1_M1_C1" targetID="RR11_PP1_M1_C1"/>
+          <MapItem sourceID="RR11_RP1_M1_C2" targetID="RR11_PP1_M1_C2"/>
+          <MapItem sourceID="RR11_RP1_M1_C3" targetID="RR11_PP1_M1_C3"/>
+          <MapItem sourceID="RR11_RP1_M1_C4" targetID="RR11_PP1_M1_C4"/>
+          <MapItem sourceID="RR11_RP1_M1_C5" targetID="RR11_PP1_M1_C5"/>
+          <MapItem sourceID="RR11_RP1_M1_C6" targetID="RR11_PP1_M1_C6"/>
+          <MapItem sourceID="RR11_RP2_M1" targetID="RR11_PP1_M2"/>
+          <MapItem sourceID="RR11_RP2_M1_C1" targetID="RR11_PP1_M2_C1"/>
+          <MapItem sourceID="RR11_RP2_M1_C2" targetID="RR11_PP1_M2_C2"/>
+          <MapItem sourceID="RR11_RP2_M1_C3" targetID="RR11_PP1_M2_C3"/>
+          <MapItem sourceID="RR11_RP2_M1_C4" targetID="RR11_PP1_M2_C4"/>
+          <MapItem sourceID="RR11_RP2_M1_C5" targetID="RR11_PP1_M2_C5"/>
+          <MapItem sourceID="RR11_RP2_M1_C6" targetID="RR11_PP1_M2_C6"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR11_RP1_M1_C3" site2="RR11_RP2_M1_C3"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR12" name="_R12" symmetry_factor="0.5">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR12_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR12_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_RP1_M1_C6" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR12_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR12_RP2_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR12_RP2_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR12_RP2_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR12_RP2_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR12_RP2_M1_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR12_RP2_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_RP2_M1_C6" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR12_PP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR12_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C3" name="d" numberOfBonds="1"/>
+                  <Component id="RR12_PP1_M1_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M1_C6" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="RR12_PP1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR12_PP1_M2_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M2_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M2_C3" name="d" numberOfBonds="1"/>
+                  <Component id="RR12_PP1_M2_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M2_C5" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR12_PP1_M2_C6" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="RR12_PP1_B1" site1="RR12_PP1_M1_C3" site2="RR12_PP1_M2_C3"/>
+            </ListOfBonds>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR12_RateLaw" type="Function" name="_rateLaw12" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR12_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR12_RP1_M1" targetID="RR12_PP1_M1"/>
+          <MapItem sourceID="RR12_RP1_M1_C1" targetID="RR12_PP1_M1_C1"/>
+          <MapItem sourceID="RR12_RP1_M1_C2" targetID="RR12_PP1_M1_C2"/>
+          <MapItem sourceID="RR12_RP1_M1_C3" targetID="RR12_PP1_M1_C3"/>
+          <MapItem sourceID="RR12_RP1_M1_C4" targetID="RR12_PP1_M1_C4"/>
+          <MapItem sourceID="RR12_RP1_M1_C5" targetID="RR12_PP1_M1_C5"/>
+          <MapItem sourceID="RR12_RP1_M1_C6" targetID="RR12_PP1_M1_C6"/>
+          <MapItem sourceID="RR12_RP2_M1" targetID="RR12_PP1_M2"/>
+          <MapItem sourceID="RR12_RP2_M1_C1" targetID="RR12_PP1_M2_C1"/>
+          <MapItem sourceID="RR12_RP2_M1_C2" targetID="RR12_PP1_M2_C2"/>
+          <MapItem sourceID="RR12_RP2_M1_C3" targetID="RR12_PP1_M2_C3"/>
+          <MapItem sourceID="RR12_RP2_M1_C4" targetID="RR12_PP1_M2_C4"/>
+          <MapItem sourceID="RR12_RP2_M1_C5" targetID="RR12_PP1_M2_C5"/>
+          <MapItem sourceID="RR12_RP2_M1_C6" targetID="RR12_PP1_M2_C6"/>
+        </Map>
+        <ListOfOperations>
+          <AddBond site1="RR12_RP1_M1_C3" site2="RR12_RP2_M1_C3"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR13" name="_R13" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR13_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR13_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR13_RP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C4" name="N" state="0" numberOfBonds="0"/>
+                  <Component id="RR13_RP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR13_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR13_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR13_PP1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C2" name="g2" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C3" name="d" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C4" name="N" state="1" numberOfBonds="0"/>
+                  <Component id="RR13_PP1_M1_C5" name="x" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR13_RateLaw" type="Function" name="_rateLaw13" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR13_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR13_RP1_M1" targetID="RR13_PP1_M1"/>
+          <MapItem sourceID="RR13_RP1_M1_C1" targetID="RR13_PP1_M1_C1"/>
+          <MapItem sourceID="RR13_RP1_M1_C2" targetID="RR13_PP1_M1_C2"/>
+          <MapItem sourceID="RR13_RP1_M1_C3" targetID="RR13_PP1_M1_C3"/>
+          <MapItem sourceID="RR13_RP1_M1_C4" targetID="RR13_PP1_M1_C4"/>
+          <MapItem sourceID="RR13_RP1_M1_C5" targetID="RR13_PP1_M1_C5"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR13_RP1_M1_C4" finalState="1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR14" name="_R14" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR14_RP1" label="r">
+            <ListOfMolecules>
+              <Molecule id="RR14_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR14_RP1_M1_C1" name="x" state="0" numberOfBonds="0"/>
+                  <Component id="RR14_RP1_M1_C2" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR14_PP1" label="r">
+            <ListOfMolecules>
+              <Molecule id="RR14_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR14_PP1_M1_C1" name="x" state="1" numberOfBonds="0"/>
+                  <Component id="RR14_PP1_M1_C2" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR14_RateLaw" type="Function" name="_rateLaw14" totalrate="0">
+          <ListOfArguments>
+            <Argument id="r" type="ObjectReference" value="RR14_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR14_RP1_M1" targetID="RR14_PP1_M1"/>
+          <MapItem sourceID="RR14_RP1_M1_C1" targetID="RR14_PP1_M1_C1"/>
+          <MapItem sourceID="RR14_RP1_M1_C2" targetID="RR14_PP1_M1_C2"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR14_RP1_M1_C1" finalState="1"/>
+          <StateChange site="RR14_RP1_M1_C2" finalState="1"/>
+        </ListOfOperations>
+      </ReactionRule>
+      <ReactionRule id="RR15" name="_R15" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR15_RP1" label="p">
+            <ListOfMolecules>
+              <Molecule id="RR15_RP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR15_RP1_M1_C1" name="l" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR15_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR15_PP1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="RR15_PP1_M1_C1" name="l" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR15_RateLaw" type="Function" name="_rateLaw15" totalrate="0">
+          <ListOfArguments>
+            <Argument id="p" type="ObjectReference" value="RR15_RP1"/>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR15_RP1_M1" targetID="RR15_PP1_M1"/>
+          <MapItem sourceID="RR15_RP1_M1_C1" targetID="RR15_PP1_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR15_RP1_M1_C1" finalState="1"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Gagpolymer" type="Molecules">
+        <ListOfPatterns>
+          <Pattern id="O1_P1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="GAG"/>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="GagLattice" type="Molecules">
+        <ListOfPatterns>
+          <Pattern id="O2_P1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="x" state="1" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="GagPentamer" type="Molecules">
+        <ListOfPatterns>
+          <Pattern id="O3_P1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="O3_P1_M1_C2" name="g2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O3_P1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="O3_P1_M2_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="O3_P1_M2_C2" name="g2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O3_P1_M3" name="GAG">
+                <ListOfComponents>
+                  <Component id="O3_P1_M3_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="O3_P1_M3_C2" name="g2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O3_P1_M4" name="GAG">
+                <ListOfComponents>
+                  <Component id="O3_P1_M4_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="O3_P1_M4_C2" name="g2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O3_P1_M5" name="GAG">
+                <ListOfComponents>
+                  <Component id="O3_P1_M5_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="O3_P1_M5_C2" name="g2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O3_P1_B1" site1="O3_P1_M1_C2" site2="O3_P1_M2_C1"/>
+              <Bond id="O3_P1_B2" site1="O3_P1_M2_C2" site2="O3_P1_M3_C1"/>
+              <Bond id="O3_P1_B3" site1="O3_P1_M3_C2" site2="O3_P1_M4_C1"/>
+              <Bond id="O3_P1_B4" site1="O3_P1_M4_C2" site2="O3_P1_M5_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O4" name="GagTetramer" type="Molecules">
+        <ListOfPatterns>
+          <Pattern id="O4_P1">
+            <ListOfMolecules>
+              <Molecule id="O4_P1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="O4_P1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="O4_P1_M1_C2" name="g2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O4_P1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="O4_P1_M2_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="O4_P1_M2_C2" name="g2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O4_P1_M3" name="GAG">
+                <ListOfComponents>
+                  <Component id="O4_P1_M3_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="O4_P1_M3_C2" name="g2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O4_P1_M4" name="GAG">
+                <ListOfComponents>
+                  <Component id="O4_P1_M4_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="O4_P1_M4_C2" name="g2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O4_P1_B1" site1="O4_P1_M1_C2" site2="O4_P1_M2_C1"/>
+              <Bond id="O4_P1_B2" site1="O4_P1_M2_C2" site2="O4_P1_M3_C1"/>
+              <Bond id="O4_P1_B3" site1="O4_P1_M3_C2" site2="O4_P1_M4_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O5" name="GagTrimer" type="Molecules">
+        <ListOfPatterns>
+          <Pattern id="O5_P1">
+            <ListOfMolecules>
+              <Molecule id="O5_P1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="O5_P1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="O5_P1_M1_C2" name="g2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O5_P1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="O5_P1_M2_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="O5_P1_M2_C2" name="g2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O5_P1_M3" name="GAG">
+                <ListOfComponents>
+                  <Component id="O5_P1_M3_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="O5_P1_M3_C2" name="g2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O5_P1_B1" site1="O5_P1_M1_C2" site2="O5_P1_M2_C1"/>
+              <Bond id="O5_P1_B2" site1="O5_P1_M2_C2" site2="O5_P1_M3_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O6" name="GagDimer" type="Molecules">
+        <ListOfPatterns>
+          <Pattern id="O6_P1">
+            <ListOfMolecules>
+              <Molecule id="O6_P1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="O6_P1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="O6_P1_M1_C2" name="g2" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O6_P1_M2" name="GAG">
+                <ListOfComponents>
+                  <Component id="O6_P1_M2_C1" name="g1" numberOfBonds="1"/>
+                  <Component id="O6_P1_M2_C2" name="g2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O6_P1_B1" site1="O6_P1_M1_C2" site2="O6_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O7" name="GagMonomer" type="Molecules">
+        <ListOfPatterns>
+          <Pattern id="O7_P1">
+            <ListOfMolecules>
+              <Molecule id="O7_P1_M1" name="GAG">
+                <ListOfComponents>
+                  <Component id="O7_P1_M1_C1" name="g1" numberOfBonds="0"/>
+                  <Component id="O7_P1_M1_C2" name="g2" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="gag_lattice">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="p" type="Local"/>
+          <Reference name="Gagpolymer" type="Observable"/>
+        </ListOfReferences>
+        <Expression> if((Gagpolymer(p)&lt;2500),1,0) </Expression>
+      </Function>
+      <Function id="complete_lattice">
+        <ListOfArguments>
+          <Argument id="r"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="r" type="Local"/>
+          <Reference name="Gagpolymer" type="Observable"/>
+        </ListOfReferences>
+        <Expression> if((Gagpolymer(r)&gt;2497),1,0) </Expression>
+      </Function>
+      <Function id="hexamer">
+        <ListOfArguments>
+          <Argument id="t"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="t" type="Local"/>
+          <Reference name="Gagpolymer" type="Observable"/>
+        </ListOfReferences>
+        <Expression> if((Gagpolymer(t)&gt;5),1,0) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kpoly" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kpoly*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw2">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kpolyn" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kpolyn*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw3">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kpolyn2" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kpolyn2*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw4">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kpolyPM" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kpolyPM*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw5">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kpolynPM" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kpolynPM*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw6">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kpolyn2PM" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kpolyn2PM*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw7">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kdimer" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kdimer*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw8">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kdimer" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kdimer*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw9">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kdimern2" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kdimern2*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw10">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kdimerPM" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kdimerPM*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw11">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kdimerPM" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kdimerPM*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw12">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kdimern2PM" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kdimern2PM*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw13">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="krna" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> krna*gag_lattice(p) </Expression>
+      </Function>
+      <Function id="_rateLaw14">
+        <ListOfArguments>
+          <Argument id="r"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="khigh" type="Constant"/>
+          <Reference name="complete_lattice" type="Function"/>
+          <Reference name="r" type="Local"/>
+        </ListOfReferences>
+        <Expression> khigh*complete_lattice(r) </Expression>
+      </Function>
+      <Function id="_rateLaw15">
+        <ListOfArguments>
+          <Argument id="p"/>
+        </ListOfArguments>
+        <ListOfReferences>
+          <Reference name="kpip" type="ConstantExpression"/>
+          <Reference name="gag_lattice" type="Function"/>
+          <Reference name="p" type="Local"/>
+        </ListOfReferences>
+        <Expression> kpip*gag_lattice(p) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>

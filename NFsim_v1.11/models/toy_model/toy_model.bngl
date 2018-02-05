@@ -1,0 +1,39 @@
+begin parameters
+	kbon 2
+	kboff 3
+	kphos 2
+	kcon 5
+	kcoff 3
+end parameters
+
+begin molecule types
+	A(b,c,p~0~1)
+	B(b)
+	C(c)
+end molecule types
+
+begin species
+	A(b,c,p~0)	400
+	B(b)		400
+	C(c) 		300
+end species
+
+begin observables
+	Molecules 	A_free		A(b,c,p~0)
+	Molecules	A_bound_B	A(b!1,c,p~0)
+	Molecules	A_bound_Bp	A(b!1,c,p~1)
+	Molecules	A_bound_BC	A(b!1,c!1,p~1)
+end observables
+
+begin functions
+end functions
+
+begin reaction rules
+	A(b,c,p~0) + B(b) -> A(b!1,c,p~0).B(b!1)					kbon
+	A(b!1,c,p~0).B(b!1) -> A(b!1,c,p~1).B(b!1)					kphos
+	A(b!1,c,p~0).B(b!1) -> A(b,c,p~0) + B(b)					kboff
+	A(b!1,c,p~1) + C(c) -> A(b!1,c!1,p~1).C(c!1)				kcon
+end reaction rules
+
+simulate_nf({suffix=>toy1,t_end=>10,n_steps=>50000});
+
