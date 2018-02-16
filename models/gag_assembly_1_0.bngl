@@ -1,0 +1,33 @@
+# Max's very first gag assembly model. Adapted directly from Justin's final model
+# toy_creat_RNAlooping_PSI_N_cooperativity.bngl without any additional features
+
+begin model
+
+begin parameters
+	# Avogadro's number
+	Av 				6.022e23 # mol^-1
+	# width of plasma membrane
+	Wpm 			0.002 # um
+	# Cytoplasmic volume
+	Vc 				9.4e-16 # L
+	# Surface area of plasma membrane
+	SApm 			1600 # um^2
+	Vpm SApm*Wpm*1e-15 # L
+	# Gag de-polymerization
+	koff 			1 # s^-1
+	khigh 			1e9 # M^-1 s^-1
+	kmid 			1e5 # M^-1 s^-1
+	# The cap on Gag molecules
+	Gmax 			4e3
+	RNApsi 			100
+	# length of RNA (in what units)
+	Lrna 			50
+	
+end parameters
+
+begin species
+	GAG(g1,g2,d,lb,n)	0
+	PIP(p)				1e4
+	Lattice()			0
+end species
+

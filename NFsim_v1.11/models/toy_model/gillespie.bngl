@@ -1,6 +1,6 @@
 begin parameters
-	kbon 	.04
-	kboff 	.04
+	kbon 	400
+	kboff 	.00004
 end parameters
 
 begin molecule types
@@ -9,8 +9,8 @@ begin molecule types
 end molecule types
 
 begin species
-	A(b)			400
-	B(b)			400
+	A(b)			1000000
+	B(b)			1000000
 	A(b!1).B(b!1)	0
 end species
 
@@ -27,3 +27,8 @@ begin reaction rules
 end reaction rules
 
 simulate_nf({suffix=>toy1,t_end=>100,n_steps=>50000});
+
+begin reaction rules
+	A(b) + B(b) <-> A(b!1).B(b!1)	kbon, kboff
+	A(b) + B(b) <-> A(b!1).B(b!1)	kbon, kboff
+

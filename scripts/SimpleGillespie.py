@@ -25,25 +25,6 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-def initialConditions():
-    """Read in module arguments to set starting conditions of the system"""
-    usage = 'usage: %prog [options]'
-    parser = OptionParser(usage=usage)
-    parser.add_option("-A", "--A", action="store_const", dest="A", default=10,
-                      help="starting concentration of reactant A in uM, default=100")
-    parser.add_option("-B", "--B", action="store_const", dest="B", default=10,
-                      help="startring concentration of reactant B in uM, default=100")
-    parser.add_option("--AB", action="store_const", dest="AB", default=0,
-                      help="starting concentration of produce AB in uM, default=0")
-    parser.add_option("--rxnvol", action="store_const", dest="rxnvol", default=.000000000001,
-                      help="total volume of reaction in um^3, default=10")
-    parser.add_option("--Kd", action="store_const", dest="kd", default=.04,
-                      help="rate constant for A + B -> AB, default=10")
-    parser.add_option("--Kb", action="store_const", dest="kb", default=.04,
-                      help="rate constant for AB -> A + B, default=10")
-    (options, args) = parser.parse_args()
-    return vars(options)
     
 class Gillespie(object):
     """Performs one step in the Gillespie algorithm and updates the stepDic
@@ -51,36 +32,72 @@ class Gillespie(object):
         1) Determine time to next step
         2) Determine which of potential reactions occurs
     """
+    # Stores the numbers of each molecule for each point in time
     stepDic = {'A':[], 'B':[], 'AB':[], 't':[]}
-    # The ideal number of avocados to own, assuming no storage constraints
+    # The optimal number of avocados to own, assuming no storage constraints
     avogadro = 6.0221409E+23
     
     def __init__(self, a, b, ab, kd, kb, t, rxnvol):
         # Starting concentrations of all species
-        self.a, self.b, self.ab = a, b, ab
+        self.a, self.b, self.ab = a*10e-6, b*10e-6, ab*10e-6
         # Rate constants for both rxns
         self.kd, self.kb = kd, kb
         # Time at start of algorithm step
         self.t = t
         # Volume of reaction
         self.rxnvol = rxnvol
+        # Number of each molecule type
         self.mlcA = self.ConvertToMlcs(self.a)
         self.mlcB = self.ConvertToMlcs(self.b)
         self.mlcAB = self.ConvertToMlcs(self.ab)
-        # Convert rate from M/s to molecules/s
-        self.mlcKd = self.kd * (1. / ((rxnvol*10**-15) * self.avogadro))
-        self.mlcKb = self.kb * (1. / ((rxnvol*10**-15) * self.avogadro))
+        self.mlcKd = self.kd*self.rxnvol*self.avogadro
+        
+    def iterator(self, tmax):
+        """Runs simulation with cutoff time = tmax
+        """
+        while True:
+            self.stepDic['A'].append(self.mlcA), self.stepDic['B'].append(self.mlcB),\
+                    self.stepDic['AB'].append(self.mlcAB), self.stepDic['t'].append(self.t)
+            if self.t >= tmax:
+                break
+            fRate, rRate = self.findRates()
+            # rxnChoice = 0, forward rxn proceeds. rxnChoice = 1, rev rxn proceeds.
+            rxnChoice = np.random.choice(2, p=[fRate/(fRate+rRate), rRate/(fRate+rRate)])
+            print '%ssec, %s mlcsA, %s mlcsB, %s mlcsAB' % (self.t, self.mlcA, self.mlcB, self.mlcAB)
+            print 'forward = %s mlcs/s, reverse = %s mlcs/s' % (fRate, rRate)
+            print 'rxn choice = %s' % (rxnChoice)
+            print '[A] = %s, [B] = %s, [AB] = %s' % (self.a, self.b, self.ab)
+            if rxnChoice == 0:
+                self.mlcA -= 1
+                self.mlcB -= 1
+                self.mlcAB += 1
+            else:
+                self.mlcA += 1
+                self.mlcB += 1
+                self.mlcAB -= 1
+            step = self.CalculateTimeStep(fRate + rRate)
+            print 'delta = %s\n' % (step)
+            self.t += step
+            self.a = self.mlcA / (self.avogadro * self.rxnvol)
+            self.b = self.mlcB / (self.avogadro * self.rxnvol)
+            self.ab = self.mlcAB / (self.avogadro * self.rxnvol)
+            
+    def findRates(self):
+        """Calculate forward and reverse reaction rates in molecules/s
+        """
+        #fRate, rRate = self.mlcKd * self.mlcA * self.mlcB, self.mlcKb * self.mlcAB
+        fRate, rRate = self.kd * self.a * self.b, self.kb * self.ab
+        return fRate * self.rxnvol * self.avogadro, rRate * self.rxnvol * self.avogadro
 
     def ConvertToMlcs(self, conc):
-        """Convert uM to number of molecules"""
+        """Convert M to number of molecules"""
         # Units will be coming in as micromolar & um^3, convert to molar & liters
-        conc, vol = conc * 10**-6, (self.rxnvol * 10**-15)
-        return int( conc * self.rxnvol * self.avogadro )
+        return int(conc * self.rxnvol * self.avogadro)
     
     def ConvertToMolarity(self, mlcs):
         """Convert number of molecules to uM"""
         # vol is in um^3
-        return (( mlcs / self.avogadro ) / (self.rxnvol * 10**-15)) * 10**6
+        return (( mlcs / self.avogadro ) / (self.rxnvol) * 10**6)
     
     def CalculateTimeStep(self, rate):
         """Calculate the time of each step in the Gillespie algorithm
@@ -90,48 +107,39 @@ class Gillespie(object):
         """
         return np.random.exponential(1./rate)
         
-    def findRates(self):
-        """Calculate forward and reverse reaction rates in molecules/s
-        """
-        fRate, rRate = self.mlcKd * self.mlcA * self.mlcB, self.mlcKb * self.mlcAB
-        return fRate, rRate
-
-    def iterator(self, tmax):
-        """
-        """
-        while True:
-            self.stepDic['A'].append(self.mlcA), self.stepDic['B'].append(self.mlcB),\
-                    self.stepDic['AB'].append(self.mlcAB), self.stepDic['t'].append(self.t)
-            #print self.t, self.mlcA, self.mlcAB
-            if self.t >= tmax:
-                break
-            fRate, rRate = self.findRates()
-            # rxnChoice = 0, forward rxn proceeds. rxnChoice = 1, rev rxn proceeds.
-            rxnChoice = np.random.choice(2, p=[fRate/(fRate+rRate), rRate/(fRate+rRate)])
-            print 't=%ss, A=%s, AB=%s' % (self.t, self.mlcA, self.mlcAB)
-            if rxnChoice == 0:
-                self.mlcA -= 1
-                self.mlcB -= 1
-                self.mlcAB += 1
-            else:
-                self.mlcA += 1
-                self.mlcB += 1
-                self.mlcAB -= 1
-            self.t += self.CalculateTimeStep(fRate + rRate)  
+def initialConditions():
+    """Read in module arguments to set starting conditions of the system"""
+    usage = 'usage: %prog [options]'
+    parser = OptionParser(usage=usage)
+    parser.add_option("-A", "--A", action="store", dest="A", default=.01, type='float',
+                      help="starting concentration of reactant A in uM, default=.5")
+    parser.add_option("-B", "--B", action="store", dest="B", default=.01, type='float',
+                      help="startring concentration of reactant B in uM, default=.5")
+    parser.add_option("--AB", action="store", dest="AB", default=0, type='float',
+                      help="starting concentration of produce AB in uM, default=0")
+    parser.add_option("--rxnvol", action="store", dest="rxnvol", default=2e-12, type='float',
+                      help="total volume of reaction in L, default=9.4e-16")
+    parser.add_option("--Kd", action="store", dest="kd", default=400000000, type='float',
+                      help="rate constant for A + B -> AB, default=10")
+    parser.add_option("--Kb", action="store", dest="kb", default=40, type='float',
+                      help="rate constant for AB -> A + B, default=10")
+    (options, args) = parser.parse_args()
+    return vars(options)
             
 def main():
     initCond = initialConditions()
     g = Gillespie(a=initCond['A'], b=initCond['B'], ab=initCond['AB'], kd=initCond['kd'],
               kb=initCond['kb'], rxnvol=initCond['rxnvol'], t=0)
-    g.iterator(.000001)
+    g.iterator(1)
     plt.figure()
-    plt.plot(g.stepDic['t'], g.stepDic['A'], label='A')
-    plt.plot(g.stepDic['t'], g.stepDic['AB'], label='AB')
+    plt.plot(g.stepDic['t'], g.stepDic['A'], label='A', marker='o')
+    plt.plot(g.stepDic['t'], g.stepDic['AB'], label='AB', marker='o')
     plt.ylabel('molecules')
     plt.xlabel('time(s)')
     plt.legend()
     plt.show()
     plt.close()
+    print 'steps = %s' % (len(g.stepDic['t']))
 
 if __name__ == "__main__":
     main()
