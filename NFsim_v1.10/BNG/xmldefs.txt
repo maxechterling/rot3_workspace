@@ -1,0 +1,70 @@
+Model
+ ListOfParameters
+ ListOfMoleculeTypes
+ ListOfCompartments
+ ListOfSpecies
+ ListOfReactionRules
+ ListOfObservables
+
+Parameter
+  id		sID		required
+  type		String		required
+  value		Expression	required
+
+type is one of Constant, ConstantExpression, Observable, Function, Local.
+
+MoleculeType
+  id		sID		required
+  ListOfComponentTypes
+
+->ComponentType
+  id		sID		required
+  ListOfAllowedStates
+
+->->AllowedState
+  id		sID		required
+	
+***Compartment structure goes here
+
+Species
+  id		sID		required
+  name		String		required
+  compartment	CompartmentRef	optional
+  concentration	Expression	optional
+  fixed		Boolean		optional
+  
+  ListOfMolecules
+  ListOfBonds
+
+->Molecule
+  id		sID		required
+  name		String		required #NOTE: Should be replaced by
+					 #      MoleculeTypeRef
+  comparmtment  CompartmentRef  optional
+  ListOfComponents
+
+->->Component				 
+  id		sID		required
+  name		String		required #NOTE: Should be replaced by
+					 #      ComponentTypeRef
+  numberOfBonds String          optional
+
+numberOfBonds is a NonNegativeInteger.
+
+->Bond
+  id		sID		required
+  site1		ComponentRef	required
+  site2		ComponentRef	required
+
+ReactionRule
+  id		sID		required
+  name		String		optional
+  priority	Integer		optional
+  ListOfReactantPatterns
+  ListOfProductPatterns
+  ListOfExcludeReactants
+  ListOfIncludeReactants
+  ListOfExcludeProducts
+  ListOfIncludeProducts
+  RateLaw
+

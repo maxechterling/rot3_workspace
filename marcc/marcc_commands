@@ -1,0 +1,20 @@
+## login
+ssh "mechter1@jhu.edu"@gateway2.marcc.jhu.edu
+
+## start connection in background
+ssh -fNM gateway2.marcc.jhu.edu -l mechter1@jhu.edu
+
+## copy files
+scp SRR5229019_sra.scr "mechter1@jhu.edu"@gateway2.marcc.jhu.edu:/home-3/mechter1@jhu.edu/data/mechter1/SRR5229019_sra.scr
+
+## exit cluster
+exit
+
+## load anaconda
+module load anaconda-python
+
+## load bowtie2
+module load bowtie2
+
+instead of shared put debug
+time = 2:00

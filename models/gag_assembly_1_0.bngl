@@ -20,9 +20,25 @@ begin parameters
 	# The cap on Gag molecules
 	Gmax 			4e3
 	RNApsi 			100
-	# length of RNA (in what units)
-	Lrna 			50
+	# length of RNA (in what units?)
+	Lrna 			50 # Number of sites on RNA polymer
+	PsiMax			20 # Maximum number of Psi sites on RNA polymer
+	Kc				1000 # Recycling rate
+	Kg				10000 # Rate of GAG creation
 	
+	poly			1e4
+	polyn1			1e6
+	polyn2			1e7
+	dimern1			1e7
+	dimern2			1e9
+	psi				2.3e6
+	rna				2.3e3
+	pip				1e6
+	
+	kpoly			(poly/Av)/Vc # polymerization w/o RNA
+	kpolyn			(polyn1/Av)/Vc # polymerization w/ 1 RNA
+	kpoly		
+
 end parameters
 
 begin species
@@ -30,4 +46,6 @@ begin species
 	PIP(p)				1e4
 	Lattice()			0
 end species
+
+
 

@@ -17,7 +17,7 @@ begin parameters
 	koff 1
 	khigh 1e9
 	kmid 1e5 #arbitrarily high rate constant, using for RNA formation rate because it’s supposed to be instantaneous
-	G0 0  #starting number of GAGs	
+	G0 1000  #starting number of GAGs	
 	R0 4e3 #not sure how many GAGs are actually in the cell but the rate of production is 10-1000/second.
 	L_0 1e4 #actual value in fibroblasts is 2.8e7. Decreased by a factor of around 1000 because
 		  # it makes the simulation run very slowly.
@@ -37,7 +37,7 @@ begin parameters
 	dimer 1e7
 	dimern2 1e9
 	psi 2.3e6 #PMID:23798665
-	rna 2.3e3 #PMID:23798665
+	rna	1600000.0
 	pip 1e6
 
 
